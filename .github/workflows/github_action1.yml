@@ -1,4 +1,4 @@
-name: remote ssh command
+name: github-action1
 on: [push]
 jobs:
 
