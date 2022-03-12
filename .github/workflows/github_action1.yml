@@ -1,5 +1,7 @@
 name: github-action1
+
 on: [push]
+
 jobs:
 
   build:
