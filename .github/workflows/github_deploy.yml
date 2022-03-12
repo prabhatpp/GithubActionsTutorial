@@ -1,0 +1,29 @@
+name: Build & Deploy
+on:
+  push:
+    tags:
+      - 'v1.*.0'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$DO_GITHUB_PRIVATE_KEY" > ../github_do.key
+          sudo chmod 600 ../github_do.key
+          ssh-keyscan -H ${{secrets.DEPLOY_SERVER}} > ~/.ssh/known_hosts
+        shell: bash
+        env:
+          DO_GITHUB_PRIVATE_KEY: ${{secrets.DO_GITHUB_PRIVATE_KEY}}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install Packages
+        run: yarn install --frozen-lockfile
+      - name: Build artifacts
+        env:
+          DEPLOY_SSH_KEY_PATH: ${{ github.workspace }}/../github_do.key
+        run: |
+          yarn shipit production fast-deploy
