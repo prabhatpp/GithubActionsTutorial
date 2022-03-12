@@ -1,9 +1,8 @@
-name: Github Actions Example
-
+name: My first GitHub Action
 on: [push]
 jobs:
     print-hello-world:
-       rush-on: ubuntu-latest
+        runs-on: ubuntu-latest
        steps:
           - run: echo "hell world !!!!!"
           - run: echo "this is step number  02"
