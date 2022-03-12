@@ -1,0 +1,23 @@
+name: Deployment Workflow
+
+on:
+  push:
+     branches: [master]
+
+jobs:
+  jobs_one:
+    name: Deploy
+
+    runs-on: ubuntu-lates
+    steps:
+    - name: testing 54.89.229.121 server ssh connection
+      uses: appleboay/ssh-action@master
+      with:
+        host: 54.89.229.121
+        username: ubuntu
+        key: ${{secrets.OMG_SECRET}}
+        port: 22
+        script: |
+           cd 
+           git pull origin master
+           git status 
