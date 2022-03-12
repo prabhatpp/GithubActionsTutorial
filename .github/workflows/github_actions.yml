@@ -6,4 +6,4 @@ jobs:
        rush-on: ubuntu-latest
        steps:
           - run: echo "hell world !!!!!"
-          - run: echo "this is step number 2"
+          - run: echo "this is step number  02"
