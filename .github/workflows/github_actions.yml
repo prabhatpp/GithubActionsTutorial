@@ -3,6 +3,6 @@ on: [push]
 jobs:
     print-hello-world:
         runs-on: ubuntu-latest
-       steps:
-          - run: echo "hell world !!!!!"
-          - run: echo "this is step number  02"
+        steps:
+            - run: echo "hell world !!!!!"
+            - run: echo "this is step number  02"
